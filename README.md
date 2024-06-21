@@ -1,1 +1,3 @@
-# powershellbasics-20240-06
+# CQURE PowerShell Basics
+
+training rotation - June 2024
