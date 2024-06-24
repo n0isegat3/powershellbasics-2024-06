@@ -1,0 +1,9 @@
+1. find command for enumerating windows partitions
+
+2. find help for this command
+
+3. find which parameters are required and which are positional
+
+4. create your own powershell profile and show computername on start
+
+5. add creation of your own alias to the powershell profile
