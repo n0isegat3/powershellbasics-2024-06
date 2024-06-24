@@ -1,0 +1,18 @@
+1. find command for enumerating windows partitions
+	Get-Command -Verb get -Noun *partition*
+2. find help for this command
+	Get-Help -Name get-partition -Full
+3. find which parameters are required and which are positional
+4. create your own powershell profile and show computername on start
+	$profile
+	New-Item -Path "$env:USERPROFILE\Documents\WindowsPowerShell" -ItemType Directory
+	New-Item $profile
+	ise $profile
+	# content of profile script:
+	hostname
+	# or you can use
+	$env:computername
+5. add creation of your own alias to the powershell profile
+	ise $profile
+	# content of profile script:
+	new-alias -name test -value get-childitem
