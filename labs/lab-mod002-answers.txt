@@ -1,0 +1,40 @@
+Task 1: List All Files in a Directory
+Get-ChildItem -Path C:\Windows\System32 -Filter *.exe | Sort-Object -Property Length -Descending | Out-File -FilePath $env:USERPROFILE\Desktop\ExeFiles.txt
+
+Task 2: Get Process Information
+ Get-Process | Where-Object {$_.WorkingSet64 -gt 104857600} | Sort-Object -Property CPU -Descending |
+    Select-Object -Property Name,WorkingSet64,CPU
+
+Get-Process | Where-Object {$_.WorkingSet64 -gt 100MB} | Sort-Object -Property CPU -Descending |
+    Select-Object -Property Name,@{n='MemoryUsage';e={$_.WorkingSet64}},CPU
+
+Get-Process | Where-Object {$_.WorkingSet64 -gt 100MB} | Sort-Object -Property CPU -Descending |
+    Select-Object -Property Name,@{n='MemoryUsageInMB';e={$_.WorkingSet64/1MB}},CPU
+
+Get-Process | Where-Object {$_.WorkingSet64 -gt 100MB} | Sort-Object -Property CPU -Descending |
+    Select-Object -Property Name,@{n='MemoryUsageInMB';e={[math]::Round(($_.WorkingSet64/1MB))}},CPU
+
+Task 3: User Accounts
+Get-LocalUser | Where-Object { $_.Enabled -eq $true } | Select-Object -Property Name, Enabled
+Get-LocalUser | Where-Object -Property Enabled -eq true | Select-Object -Property Name,Enabled
+
+Task 4: Services Information
+Get-Service | Where-Object { $_.Status -eq 'Running' } | Sort-Object -Property Name | Export-Csv -Path $env:USERPROFILE\Desktop\RunningServices.csv -NoTypeInformation
+
+Task 5: Event Logs
+Get-EventLog -LogName System -Newest 100 | Where-Object { $_.EntryType -eq 'Error' } | Sort-Object -Property TimeGenerated -Descending | Export-Csv -Path $env:USERPROFILE\Desktop\ErrorEvents.csv -NoTypeInformation
+
+Task 6: Pipeline Input ByPropertyName
+Get-LocalUser | Select-Object -Property Name | Set-LocalUser -Description $_.Name #this is not possible
+
+Set-LocalUser -Name administrator -Description 'user account for administrator'
+
+Get-LocalUser | ForEach-Object {Set-LocalUser -Name $_.Name -Description "User Account for $($_.Name)"}
+
+Task 7: Calculated Properties
+Get-Volume -DriveLetter C | Select-Object DriveLetter,`
+	@{n='Size [GB]';e={$_.size/1GB}},`
+	@{n='Freespace [GB]';e={$_.sizeremaining/1GB}},`
+	@{n='Freespace [%]';e={$_.sizeremaining/$_.size*100}},`
+	@{n='Boot Partition';e={Get-Partition -DriveLetter $_.driveletter | Select-Object -ExpandProperty IsBoot}} | `
+	Format-Table -AutoSize
