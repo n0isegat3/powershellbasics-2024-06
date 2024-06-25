@@ -1,0 +1,47 @@
+Task 1: List All Files in a Directory
+- Use a PowerShell pipeline to list all files in the C:\Windows\System32 directory.
+- Filter the list to show only .exe files.
+- Sort the files by size in descending order.
+- Output the result to a text file named ExeFiles.txt on the Desktop.
+- Hint: Get-ChildItem, Sort-Object, Out-File
+
+Task 2: Get Process Information
+- Retrieve a list of all running processes.
+- Filter the processes to show only those consuming more than 100 MB of memory.
+- Sort the filtered list by CPU usage in descending order.
+- Display the process name, memory usage, and CPU usage.
+- Hint: Get-Process, Where-Object, Sort-Object, Select-Object
+
+Task 3: User Accounts
+- Get a list of all user accounts on the system.
+- Filter the list to show only accounts that are enabled.
+- Display the usernames and the account status.
+- Hint: Get-LocalUser, Where-Object, Select-Object
+
+Task 4: Services Information
+- Get a list of all services on the system.
+- Filter the list to show only services that are running.
+- Sort the list by service name.
+- Export the list to a CSV file named RunningServices.csv on the Desktop.
+- Hint: Get-Service, Where-Object, Sort-Object, Export-CSV
+
+Task 5: Event Logs
+- Retrieve the latest 100 entries from the System event log.
+- Filter the entries to show only Error events.
+- Sort the entries by time generated in descending order.
+- Output the result to a CSV file named ErrorEvents.csv on the Desktop.
+- Hint: Get-EventLog, Where-Object, Sort-Object, Export-CSV
+
+Task 6: Pipeline Input ByPropertyName
+- Retrieve a list of all local users.
+- Create a custom object with the properties Name and Description.
+- Use the pipeline to set the description ("User account for username <user name>") for each user account based on the custom object.
+- Hint: Get-LocalUser, Select-Object, Set-LocalUser
+
+Task 7: Calculated Properties
+- Create powershell oneliner to show to following output
+- Hint: Get-Volume, Get-Partition, Select-Object, Format-Table
+
+	DriveLetter        Size [GB]   Freespace [GB]    Freespace [%] Boot Partition
+	-----------        ---------   --------------    ------------- --------------
+	          C 232.388725280762 63.9273376464844 27.5087948304076           True
