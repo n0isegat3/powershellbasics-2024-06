@@ -1,0 +1,31 @@
+Task 1: Retrieve BIOS Information
+- Use WMI to get the BIOS information of the system.
+- Display the manufacturer, BIOS version, and release date.
+- Hint: WMI class Win32_BIOS
+
+Task 2: List Installed Software
+- Use CIM to retrieve a list of all installed software on the system.
+- Filter the list to show only software installed by a specific publisher (e.g., "Microsoft").
+- Display the software name, version, and installation date.
+- Hint: WMI class Win32_Product
+
+Task 3: Get Network Adapter Information
+- Use WMI to get a list of all network adapters on the system.
+- Filter the list to show only enabled adapters.
+- Display the adapter name, MAC address, and status.
+- Hint: WMI class Win32_NetworkAdapter
+
+Task 4: Disk Space Usage
+- Use CIM to get disk space usage for all drives.
+- Display the drive letter, total size, and free space.
+- Export the result to a CSV file named DiskSpaceUsage.csv on the Desktop.
+- Hint: WMI class Win32_LogicalDisk
+
+Task 5: System Uptime
+- Use WMI to retrieve the system uptime.
+- Display the total uptime in days, hours, and minutes.
+- Hint: WMI class Win32_OperatingSystem, property LastBootUpTime
+
+Task 6: Remote Execution
+- Use WMI to start cmd.exe remotely from your lab VM on DC and check the process Id.
+- Hint: WMI class win32_process, method Create, Arguments @{commandline='name of the executable'}
