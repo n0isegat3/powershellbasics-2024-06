@@ -1,0 +1,15 @@
+# for remote connection to DC use credentials t0a.elliot:P@ssw0rd
+
+Task 1: Remote Server Disks Enumeration
+- Connect using interactive powershell remoting to DC
+- Enumerate local disks
+
+Task 2: Remote Server Services Enumeration
+- Gather list of all services running on DC
+
+Task 3: Non-interactive Enumeration of Remote Server Printers
+- Using non-interactive approach, gather list of printers on DC
+
+Task 4: PowerShell Remote Sessions
+- Define your own powershell session with name "PSTraining"
+- Use this session to connect to DC and gather list of 10 newest security events from eventlog
