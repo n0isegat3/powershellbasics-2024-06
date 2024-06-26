@@ -1,0 +1,27 @@
+Task 1: Explore PSDrives
+List all available PSDrives on the system.
+Identify and describe the purpose of at least three different PSDrives.
+
+Task 2: Navigate File System using PSDrives
+Create a new PSDrive named MyFiles that maps to a folder on the Desktop (e.g., C:\Users\<Username>\Desktop\LabFolder).
+Create a new directory structure within MyFiles to organize documents, images, and scripts.
+Create a few sample files in these directories.
+
+Task 3: Use the Registry PSProvider
+Navigate to the HKCU:\Software registry path.
+Create a new registry key named LabTest.
+Within LabTest, create a string value named TestValue with data PowerShellTest.
+
+Task 4: Enumerate certificates
+List all certificates in the Cert:\CurrentUser\My store.
+Export details of all certificates to a text file named Certificates.txt on the Desktop.
+
+Task 5: Export certificates
+Create new self-signed certificate using the command  'New-SelfSignedCertificate -Subject test1 -CertStoreLocation "Cert:\CurrentUser\My" -NotAfter (Get-Date).AddYears(1)'
+Using "Cert:" psdrive export all certificates from your user personal store
+Hint: Get-ChildItem, Foreach-Object, ConvertTo-SecureString, Export-PfxCertificate
+
+Task 6: Browse Active Directory using psdrive
+Connect to DC virtual machine using virtual machine console and sign-in as t0a.elliot
+Import "ActiveDirectory" powershell module
+Browse thru the AD using powershell drive "AD:" - view the members of OU Hackers, which you can find in OU Arcade.
