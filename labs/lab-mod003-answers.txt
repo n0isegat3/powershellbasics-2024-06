@@ -1,0 +1,35 @@
+Task 1: Explore PSDrives
+Get-PSDrive
+
+Task 2: Navigate File System using PSDrives
+New-PSDrive -Name MyFiles -PSProvider FileSystem -Root "$env:USERPROFILE\Desktop\LabFolder"
+New-Item -Path MyFiles:\Documents -ItemType Directory
+New-Item -Path MyFiles:\Images -ItemType Directory
+New-Item -Path MyFiles:\Scripts -ItemType Directory
+New-Item -Path MyFiles:\Documents\SampleDoc.txt -ItemType File
+New-Item -Path MyFiles:\Images\SampleImage.jpg -ItemType File
+New-Item -Path MyFiles:\Scripts\SampleScript.ps1 -ItemType File
+
+Task 3: Use the Registry PSProvider
+New-Item -Path HKCU:\Software\LabTest -ItemType Key
+New-ItemProperty -Path HKCU:\Software\LabTest -Name TestValue -Value PowerShellTest -PropertyType String
+
+Task 4: Enumerate certificates
+Get-ChildItem -Path Cert:\CurrentUser\My | Format-List | Out-File -FilePath $env:USERPROFILE\Desktop\Certificates.txt
+
+Task 5: Export certificates
+New-SelfSignedCertificate -Subject test1 -CertStoreLocation "Cert:\CurrentUser\My" -NotAfter (Get-Date).AddYears(1)
+Get-ChildItem -Path Cert:\CurrentUser\My | ForEach-Object {
+    Export-PfxCertificate -Cert $_ -FilePath "C:\Temp\$($_.thumbprint).pfx" -Password (ConvertTo-SecureString -String 'P@ssw0rd' -AsPlainText -Force)
+}
+
+Task 6: Browse Active Directory using psdrive
+Import-Module ActiveDirectory
+Set-Location AD:
+Get-ChildItem
+Set-Location "DC=fsociety,DC=lab"
+Get-ChildItem
+Set-Location "OU=Arcade"
+Get-ChildItem
+Set-Location "OU=Hackers"
+Get-ChildItem
