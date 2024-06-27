@@ -1,0 +1,34 @@
+Task 1: Using if Condition
+- Write a script that checks if a file named test.txt exists on the Desktop.
+- If the file exists, output "File exists".
+- If the file does not exist, output "File does not exist".
+
+Task 2: Using switch Statement
+- Create a script that takes a number as input from the user.
+- Use a switch statement to output whether the number is "Positive", "Negative", or "Zero".
+
+Task 3: Using for Loop
+- Write a script to print numbers from 1 to 10.
+- For each number, output whether it is odd or even.
+
+Task 4: Using foreach Loop
+- Create an array of five numbers.
+- Use a foreach loop to iterate through the array and print the square of each number.
+
+Task 5: Using while Loop
+- Write a script to sum numbers from 1 to 100 using a while loop.
+- Output the final sum.
+
+Task 6: Using do while Loop
+- Write a script that continues to prompt the user to enter a number until they enter a number greater than 10.
+- Output "Thank you" once a number greater than 10 is entered.
+
+Task 7: Using do until Loop
+- Write a script to print numbers from 10 down to 1 using a do until loop.
+
+Task 8: Menu in console
+- Create your own script with menu - to select between 4 operations:
+	1st menu item: list all running processes
+	2nd menu item: list all local psdrives
+	3rd menu item: create folder by name (prompt for name of folder)
+	4th menu item: quit (end of your script)
