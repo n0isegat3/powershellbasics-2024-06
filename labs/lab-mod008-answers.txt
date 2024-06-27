@@ -1,0 +1,31 @@
+﻿1. create a script that reads information about bios on remote computer
+	- remote computername will be required parameter of your script
+2. add error handling to catch exception if remote computer does not exist
+
+
+
+param(
+    [Parameter(Mandatory)][string]$ComputerName
+)
+
+Clear-Host
+
+
+$IsError = $false
+try {
+    $cimsession = New-CimSession -ComputerName $ComputerName -ErrorAction Stop
+    }
+catch {
+    $IsError = $true
+    Write-Host ('There was a problem during registering new CIM session. {0}' -f $error[0].exception.Message)
+}
+
+if ($IsError -eq $false) {
+    Get-CimInstance -CimSession $cimsession -ClassName win32_bios
+    }
+
+<#
+if (!$IsError) {
+    Get-CimInstance -CimSession $cimsession -ClassName win32_bios
+    }
+#>

@@ -1,0 +1,104 @@
+﻿Task 1: Using if Condition
+if (Test-Path -Path "$env:USERPROFILE\Desktop\test.txt") {
+    Write-Output "File exists"
+} else {
+    Write-Output "File does not exist"
+}
+
+Task 2: Using switch Statement
+$number = Read-Host -Prompt "Enter a number"
+switch ($number) {
+    {$_ -gt 0} { Write-Output "Positive" }
+    {$_ -lt 0} { Write-Output "Negative" }
+    {$_ -eq 0} { Write-Output "Zero" }
+}
+
+Task 3: Using for Loop
+for ($i = 1; $i -le 10; $i++) {
+    if ($i % 2 -eq 0) {
+        Write-Output "$i is even"
+    } else {
+        Write-Output "$i is odd"
+    }
+}
+
+Task 4: Using foreach Loop
+$numbers = 1, 2, 3, 4, 5
+foreach ($number in $numbers) {
+    $square = [math]::Pow($number, 2)
+    Write-Output "The square of $number is $square"
+}
+
+Task 5: Using while Loop
+$sum = 0
+$i = 1
+while ($i -le 100) {
+    $sum += $i
+    $i++
+}
+Write-Output "The sum of numbers from 1 to 100 is $sum"
+
+Task 6: Using do while Loop
+do {
+    $number = Read-Host -Prompt "Enter a number"
+} while ($number -le 10)
+Write-Output "Thank you"
+
+Task 7: Using do until Loop
+$i = 10
+do {
+    Write-Output $i
+    $i--
+} until ($i -lt 1)
+
+Task 8: Menu in console
+$menuitems = 'list all running processes','list all local psdrives','create folder','quit'
+do {
+    $answer = $menuitems | Out-GridView -PassThru
+    switch ($answer) {
+        'list all running processes' {
+            Get-Process
+        }
+        'list all local psdrives' {
+            Get-PSDrive
+        }
+        'create folder' {
+            [string]$foldername = Read-Host 'Provide name of a new folder'
+            if (Test-Path "C:\Temp\$foldername") {
+                Write-Host "Folder $foldername already exists in C:\Temp"
+            } else {
+                New-Item -ItemType Directory -Path C:\Temp -Name $foldername
+            }
+        }
+    }
+
+} until ($answer -eq 'quit')
+
+
+#or different approach:
+do {
+    Write-Host "MENU:"
+    Write-Host "1: list all running processes"
+    Write-Host "2: local psdrives"
+    Write-Host "3: create folder"
+    Write-Host "Q: quit"
+    do {[string]$answer = Read-Host "Your selection"}
+    until ($answer -eq '1' -or $answer -eq '2' -or $answer -eq '3' -or $answer -eq 'q')
+    switch ($answer) {
+        '1' {
+            Get-Process
+        }
+        '2' {
+            Get-PSDrive
+        }
+        '3' {
+            [string]$foldername = Read-Host 'Provide name of a new folder'
+            if (Test-Path "C:\Temp\$foldername") {
+                Write-Host "Folder $foldername already exists in C:\Temp"
+            } else {
+                New-Item -ItemType Directory -Path C:\Temp -Name $foldername
+            }
+        }
+    }
+
+} until ($answer -eq 'q')
