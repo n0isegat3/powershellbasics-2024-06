@@ -1,0 +1,28 @@
+Task 1: Running a Background Job
+$job = Start-Job -Name GetProcessesJob -ScriptBlock { Get-Process }
+Receive-Job -Name GetProcessesJob -Wait -AutoRemoveJob
+
+Task 2: Monitoring a Background Job
+$job = Start-Job -Name GetServicesJob -ScriptBlock { Get-Service }
+Wait-Job -Name GetServicesJob
+Receive-Job -Name GetServicesJob -OutVariable services | Out-File -FilePath $env:USERPROFILE\Desktop\Services.txt
+Remove-Job -Name GetServicesJob
+
+Task 3: Managing Background Jobs
+$job = Start-Job -Name GetFilesJob -ScriptBlock { Get-ChildItem -Path C:\Windows }
+Wait-Job -Name GetFilesJob
+Receive-Job -Name GetFilesJob
+Remove-Job -Name GetFilesJob
+
+Task 4: Creating a Scheduled Job
+$trigger = New-JobTrigger -Daily -At "2:00PM"
+$options = New-ScheduledJobOption -RunElevated
+Register-ScheduledJob -Name DiskUsageJob -ScriptBlock { Get-Volume } -Trigger $trigger -ScheduledJobOption $options
+Get-ScheduledJob -Name DiskUsageJob
+
+Task 5: Monitoring Scheduled Jobs
+$trigger = New-JobTrigger -Weekly -DaysOfWeek Wednesday -At "2:00PM"
+$options = New-ScheduledJobOption -RunElevated
+Register-ScheduledJob -Name InstalledSoftwareJob -ScriptBlock { Get-WmiObject -Class Win32_Product } -Trigger $trigger -ScheduledJobOption $options
+Get-ScheduledJob -Name InstalledSoftwareJob
+Get-Job -Name InstalledSoftwareJob
