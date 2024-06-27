@@ -1,0 +1,27 @@
+Task 1: Running a Background Job
+- Create a background job to get a list of all processes running on the system.
+- Name the job GetProcessesJob.
+- Retrieve the job results and display them.
+
+Task 2: Monitoring a Background Job
+- Create a background job that retrieves the list of services on the system.
+- Name the job GetServicesJob.
+- Monitor the status of the job until it completes.
+- Retrieve the results and save them to a text file named Services.txt on the Desktop.
+
+Task 3: Managing Background Jobs
+- Start a background job to get a list of files in the C:\Windows directory. Name the job GetFilesJob.
+- Check the status of the job periodically.
+- Once the job completes, remove the job from the job queue.
+
+Task 4: Creating a Scheduled Job
+- Create a scheduled job to get the disk usage information for all drives on the system.
+- Schedule the job to run daily at 2PM.
+- Name the job DiskUsageJob.
+- Verify the scheduled job is created successfully.
+
+Task 5: Monitoring Scheduled Jobs
+- Create a scheduled job that retrieves a list of all installed software on the system.
+- Schedule the job to run weekly on Wednesday at 2 PM (update the time, so it will be run asap after the creation).
+- Name the job InstalledSoftwareJob.
+- Monitor the job history to ensure it runs successfully.
