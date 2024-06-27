@@ -1,0 +1,16 @@
+Task 1: Remote Server Disks Enumeration
+Enter-PSSession -ComputerName DC -Credential (Get-Credential)
+Get-Disk
+
+Task 2: Remote Server Services Enumeration
+runas /user:FSOCIETY\t0a.elliot powershell.exe
+Get-Service -ComputerName dc
+
+Task 3: Non-interactive Enumeration of Remote Server Printers
+Invoke-Command -ComputerName DC -ScriptBlock {Get-Printer} -Credential (Get-Credential)
+
+Task 4: PowerShell Remote Sessions
+New-PSSession -Name PSTraining -ComputerName DC -Credential (Get-Credential)
+Invoke-Command -Session (Get-PSSession -Name PSTraining) -ScriptBlock {
+	Get-EventLog -LogName Security -Newest 10
+}
