@@ -20,5 +20,5 @@ $minutes = $uptimeSpan.Minutes
 "System Uptime: $days days, $hours hours, and $minutes minutes"
 
 Task 6: Remote Execution
-$cimsession_server1 = New-CimSession -ComputerName server1
-Invoke-CimMethod -CimSession $cimsession_server1 -ClassName win32_process -MethodName create -Arguments @{commandline='notepad.exe'}
+$cimsession_server1 = New-CimSession -ComputerName dc
+Invoke-CimMethod -CimSession $cimsession_server1 -ClassName win32_process -MethodName create -Arguments @{commandline='cmd.exe'}
